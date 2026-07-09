@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-cream text-ink font-body antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+  :focus-visible {
+    outline: 2px solid theme('colors.marigold.500');
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold
+      transition-colors duration-150 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    @apply btn bg-plum-700 text-cream hover:bg-plum-800;
+  }
+  .btn-accent {
+    @apply btn bg-marigold-500 text-ink hover:bg-marigold-400;
+  }
+  .btn-outline {
+    @apply btn border border-plum-700 text-plum-700 hover:bg-plum-50;
+  }
+  .btn-ghost {
+    @apply btn text-plum-700 hover:bg-plum-50;
+  }
+  .input {
+    @apply w-full rounded-lg border border-plum-200 bg-white px-3.5 py-2.5 text-sm text-ink
+      placeholder:text-ink/40 focus:border-plum-500 focus:outline-none focus:ring-2 focus:ring-plum-100;
+  }
+  .label {
+    @apply mb-1.5 block text-sm font-medium text-ink/80;
+  }
+  .card {
+    @apply rounded-2xl border border-plum-100 bg-white shadow-sm;
+  }
+
+  /* Ticket-stub motif: a perforated divider between the poster and the details */
+  .ticket-divider {
+    position: relative;
+    border-top: 2px dashed theme('colors.plum.200');
+  }
+  .ticket-divider::before,
+  .ticket-divider::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    width: 20px;
+    height: 20px;
+    border-radius: 9999px;
+    background: theme('colors.cream');
+    border: 2px solid theme('colors.plum.100');
+  }
+  .ticket-divider::before { left: -11px; }
+  .ticket-divider::after { right: -11px; }
+}
