@@ -3,10 +3,7 @@ import connectDB from '../config/db.js';
 import User from '../models/User.js';
 import mongoose from 'mongoose';
 
-/**
- * Creates a default admin account if one does not already exist.
- * Run with: npm run seed
- */
+
 const seed = async () => {
   await connectDB();
 

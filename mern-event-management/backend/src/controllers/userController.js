@@ -2,9 +2,6 @@ import asyncHandler from 'express-async-handler';
 import User from '../models/User.js';
 import ApiError from '../utils/ApiError.js';
 
-// @desc    Get all users
-// @route   GET /api/users
-// @access  Private/Admin
 export const getUsers = asyncHandler(async (req, res) => {
   const page = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 20;
@@ -25,9 +22,7 @@ export const getUsers = asyncHandler(async (req, res) => {
   });
 });
 
-// @desc    Update a user's role or active status
-// @route   PATCH /api/users/:id
-// @access  Private/Admin
+
 export const updateUser = asyncHandler(async (req, res) => {
   const { role, isActive } = req.body;
 
@@ -44,9 +39,7 @@ export const updateUser = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, message: 'User updated', user: user.toSafeObject() });
 });
 
-// @desc    Delete a user
-// @route   DELETE /api/users/:id
-// @access  Private/Admin
+
 export const deleteUser = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id);
   if (!user) {

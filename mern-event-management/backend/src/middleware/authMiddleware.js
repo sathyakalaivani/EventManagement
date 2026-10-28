@@ -3,10 +3,7 @@ import asyncHandler from 'express-async-handler';
 import User from '../models/User.js';
 import ApiError from '../utils/ApiError.js';
 
-/**
- * Verifies the JWT (from httpOnly cookie or Authorization header)
- * and attaches the authenticated user to req.user.
- */
+
 export const protect = asyncHandler(async (req, res, next) => {
   let token = req.cookies?.token;
 

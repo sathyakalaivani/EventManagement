@@ -1,10 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-/**
- * Signs a JWT for the given user id and sets it as an httpOnly cookie.
- * Also returns the raw token so it can be included in the JSON body,
- * which is convenient for clients that prefer bearer-token auth.
- */
+
 const generateToken = (res, userId) => {
   const token = jwt.sign({ userId }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN || '7d',

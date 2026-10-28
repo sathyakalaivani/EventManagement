@@ -8,10 +8,7 @@ const s3Client = new S3Client({
   },
 });
 
-/**
- * Deletes an object from the configured S3 bucket.
- * @param {string} key - The S3 object key (path) to delete.
- */
+
 export const deleteFromS3 = async (key) => {
   if (!key) return;
   try {
@@ -26,11 +23,7 @@ export const deleteFromS3 = async (key) => {
   }
 };
 
-/**
- * Extracts the S3 object key from a full S3 URL.
- * @param {string} url
- * @returns {string|null}
- */
+
 export const getKeyFromUrl = (url) => {
   if (!url) return null;
   try {

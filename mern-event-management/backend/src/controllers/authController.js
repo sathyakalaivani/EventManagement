@@ -3,9 +3,7 @@ import User from '../models/User.js';
 import generateToken from '../utils/generateToken.js';
 import ApiError from '../utils/ApiError.js';
 
-// @desc    Register a new user
-// @route   POST /api/auth/register
-// @access  Public
+
 export const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -25,9 +23,7 @@ export const registerUser = asyncHandler(async (req, res) => {
   });
 });
 
-// @desc    Authenticate user & get token
-// @route   POST /api/auth/login
-// @access  Public
+
 export const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
@@ -50,9 +46,7 @@ export const loginUser = asyncHandler(async (req, res) => {
   });
 });
 
-// @desc    Log the user out (clear cookie)
-// @route   POST /api/auth/logout
-// @access  Private
+
 export const logoutUser = asyncHandler(async (req, res) => {
   res.cookie('token', '', {
     httpOnly: true,
@@ -61,9 +55,7 @@ export const logoutUser = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, message: 'Logged out successfully' });
 });
 
-// @desc    Get currently authenticated user
-// @route   GET /api/auth/me
-// @access  Private
+
 export const getMe = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, user: req.user.toSafeObject() });
 });

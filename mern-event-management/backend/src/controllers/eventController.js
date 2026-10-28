@@ -3,9 +3,7 @@ import Event from '../models/Event.js';
 import ApiError from '../utils/ApiError.js';
 import { deleteFromS3 } from '../config/s3.js';
 
-// @desc    Get all events (with search, filter, pagination)
-// @route   GET /api/events
-// @access  Public
+
 export const getEvents = asyncHandler(async (req, res) => {
   const {
     search,
@@ -49,9 +47,7 @@ export const getEvents = asyncHandler(async (req, res) => {
   });
 });
 
-// @desc    Get single event by id
-// @route   GET /api/events/:id
-// @access  Public
+
 export const getEventById = asyncHandler(async (req, res) => {
   const event = await Event.findById(req.params.id)
     .populate('organizer', 'name email')
@@ -64,9 +60,7 @@ export const getEventById = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, event });
 });
 
-// @desc    Create a new event
-// @route   POST /api/events
-// @access  Private/Admin
+
 export const createEvent = asyncHandler(async (req, res) => {
   const eventData = { ...req.body, organizer: req.user._id };
 
@@ -79,9 +73,7 @@ export const createEvent = asyncHandler(async (req, res) => {
   res.status(201).json({ success: true, message: 'Event created successfully', event });
 });
 
-// @desc    Update an event
-// @route   PUT /api/events/:id
-// @access  Private/Admin
+
 export const updateEvent = asyncHandler(async (req, res) => {
   const event = await Event.findById(req.params.id);
   if (!event) {
@@ -102,9 +94,7 @@ export const updateEvent = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, message: 'Event updated successfully', event });
 });
 
-// @desc    Delete an event
-// @route   DELETE /api/events/:id
-// @access  Private/Admin
+
 export const deleteEvent = asyncHandler(async (req, res) => {
   const event = await Event.findById(req.params.id);
   if (!event) {
@@ -120,9 +110,7 @@ export const deleteEvent = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, message: 'Event deleted successfully' });
 });
 
-// @desc    Register the current user as an attendee
-// @route   POST /api/events/:id/register
-// @access  Private
+
 export const registerForEvent = asyncHandler(async (req, res) => {
   const event = await Event.findById(req.params.id);
   if (!event) {
@@ -150,9 +138,7 @@ export const registerForEvent = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, message: 'Registered successfully', event });
 });
 
-// @desc    Cancel the current user's registration
-// @route   DELETE /api/events/:id/register
-// @access  Private
+
 export const unregisterFromEvent = asyncHandler(async (req, res) => {
   const event = await Event.findById(req.params.id);
   if (!event) {
@@ -167,9 +153,6 @@ export const unregisterFromEvent = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, message: 'Registration cancelled', event });
 });
 
-// @desc    Get events the current user created (admin) or registered for
-// @route   GET /api/events/mine
-// @access  Private
 export const getMyEvents = asyncHandler(async (req, res) => {
   let events;
   if (req.user.role === 'admin') {

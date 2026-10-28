@@ -5,8 +5,7 @@ const api = axios.create({
   withCredentials: true,
 });
 
-// Attach bearer token as a fallback for environments where cookies
-// are not persisted (e.g. cross-site previews).
+
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
   if (token) {
